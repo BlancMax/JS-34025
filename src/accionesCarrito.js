@@ -57,11 +57,29 @@ const pintarCarrito = (carrito) => {
 };
 
 const eliminarProductoCarrito = (productoId) => {
-    const carritoStorage = obtenerCarritoStorage();
-    const carritoActualizado = carritoStorage.filter(producto => producto.id != productoId);
+    Swal.fire({
+        title: 'Está seguro de eliminar el producto?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, seguro',
+        cancelButtonText: 'No, no quiero'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const carritoStorage = obtenerCarritoStorage();
+            const carritoActualizado = carritoStorage.filter(producto => producto.id != productoId);
+        
+            actualizarTotalesCarrito(carritoActualizado);
+            pintarCarrito(carritoActualizado);
 
-    actualizarTotalesCarrito(carritoActualizado);
-    pintarCarrito(carritoActualizado);
+            Swal.fire({
+                title: 'Borrado!',
+                icon: 'success',
+                text: 'El archivo ha sido borrado'
+            })
+        }
+    })
 };
+
+    
 
 export { agregarAlCarrito, validarProductoRepetido, pintarCarrito, eliminarProductoCarrito };

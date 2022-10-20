@@ -1,3 +1,4 @@
+
 import { eliminarProductoCarrito } from "./accionesCarrito.js";
 
 const modalContenedor = document.querySelector('.modal-contenedor');
