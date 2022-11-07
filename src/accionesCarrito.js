@@ -1,5 +1,4 @@
 import { actualizarTotalesCarrito } from './actualizarCarrito.js';
-import { productos } from './stock.js';
 import { obtenerCarritoStorage } from './storage.js';
 
 let carrito = [];

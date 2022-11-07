@@ -1,11 +1,18 @@
 import { mostrarProductos } from "./App.js";
 import { pintarCarrito } from "./src/accionesCarrito.js";
 import { actualizarTotalesCarrito } from "./src/actualizarCarrito.js";
-import { productos } from './src/stock.json';
 import { obtenerCarritoStorage } from "./src/storage.js";
 
+let producto =[];
+
 document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductos(productos);
+    mostrarProductos(producto);
+    fetch('/stock.json')
+    .then((response) => response.json())
+    .then((stock) =>{
+
+        console.log(stock);
+    }) 
 
     if (localStorage.getItem('carrito')) {
         const carrito = obtenerCarritoStorage();
@@ -14,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-const mostrarPosts = () => {
+/* const mostrarPosts = () => {
     const data = obtenerPosts();
 
     data.forEach((post) => {
@@ -25,13 +32,8 @@ const mostrarPosts = () => {
         `
         lista.appendChild(li);
     })
-};
+}; */
 
-fetch('/stock.json')
-    .then((response) => response.json())
-    .then((data) => {
 
-        console.log(data);
-    });
-mostrarPosts ();
+/* export {mostrarPosts}; */
 
