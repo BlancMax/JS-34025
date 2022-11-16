@@ -5,14 +5,11 @@ import { obtenerCarritoStorage } from "./src/storage.js";
 
 let producto =[];
 
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductos(producto);
-    fetch('/stock.json')
-    .then((response) => response.json())
-    .then((stock) =>{
-
-        console.log(stock);
-    }) 
+document.addEventListener('DOMContentLoaded', async () => {
+    const response = await fetch('/stock.json')
+    const stock = await response.json()
+   
+    mostrarProductos(stock);
 
     if (localStorage.getItem('carrito')) {
         const carrito = obtenerCarritoStorage();
@@ -21,19 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-/* const mostrarPosts = () => {
-    const data = obtenerPosts();
-
-    data.forEach((post) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <h4>${post.title}</h4>
-            <p>${post.body}</p>
-        `
-        lista.appendChild(li);
-    })
-}; */
 
 
-/* export {mostrarPosts}; */
 
