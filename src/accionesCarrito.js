@@ -9,7 +9,7 @@ const validarProductoRepetido = (productoId) => {
         carrito = obtenerCarritoStorage();
     }
 
-    const productoRepetido = carrito.find(producto => producto.id === productoId);
+    const productoRepetido = carrito.find(producto => producto.id === productoId.id);
 
     if (productoRepetido) {
         productoRepetido.cantidad++;
@@ -23,15 +23,14 @@ const validarProductoRepetido = (productoId) => {
 
 const agregarAlCarrito = (productoId) => {
     const contenedor = document.getElementById('carrito-contenedor');
-    const producto = productos.find(producto => producto.id === productoId);
-    carrito.push(producto);
+    carrito.push(productoId);
 
     const div = document.createElement('div');
     div.classList.add('productoEnCarrito');
-    div.innerHTML = `<p>${producto.nombre}</p>
-                    <p>Precio: ${producto.precio}</p>
-                    <p id=cantidad${producto.id}>Cantidad: ${producto.cantidad}</p>
-                    <button id=eliminar${producto.id} value='${producto.id}' class='btn waves-effect waves-ligth boton-eliminar'>X</button>
+    div.innerHTML = `<p>${productoId.nombre}</p>
+                    <p>Precio: ${productoId.precio}</p>
+                    <p id=cantidad${productoId.id}>Cantidad: ${productoId.cantidad}</p>
+                    <button id=eliminar${productoId.id} value='${productoId.id}' class='btn waves-effect waves-ligth boton-eliminar'>X</button>
                     `;
     contenedor.appendChild(div);
     actualizarTotalesCarrito(carrito);
@@ -78,7 +77,5 @@ const eliminarProductoCarrito = (productoId) => {
         }
     })
 };
-
-    
 
 export { agregarAlCarrito, validarProductoRepetido, pintarCarrito, eliminarProductoCarrito };

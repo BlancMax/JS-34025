@@ -1,5 +1,6 @@
 import { validarProductoRepetido } from "./src/accionesCarrito.js";
 
+let carrito = [];
 const mostrarProductos = (productos) => {
   const contenedorProductos = document.getElementById("producto-contenedor");
 
@@ -13,14 +14,13 @@ const mostrarProductos = (productos) => {
                       </div>
                       <div class="card-content">
                           <p>${producto.desc}</p>
-                          <p>${producto.precio}</p>
-                      </div>
-                     `
+                          <p>$ ${producto.precio}</p>
+                      </div>`;
     contenedorProductos.appendChild(div);
 
     const boton = document.getElementById(`boton${producto.id}`);
     boton.addEventListener('click', () => {
-      validarProductoRepetido(producto.id);
+      validarProductoRepetido(producto, productos);
     })
   });
 };
